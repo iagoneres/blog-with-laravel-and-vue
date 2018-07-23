@@ -1,0 +1,66 @@
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+// Colors
+$color_black_haze_approx: #f7f7f7;
+
+$color_rajah_approx: #fdae6b;
+$color_tequila_approx: #fee6ce;
+
+$color_boston_blue_approx: #3182bd;
+$color_cornflower_approx: #9ecae1;
+
+$color_alizarin_crimson_approx: #de2d26;
+$color_salmon_approx: #fc9272;
+
+$color_chateau_green_approx: #2ca25f;
+$color_sinbad_approx: #99d8c9;
+
+
+// Panel
+.panel-orange {
+  border-color: $color_tequila_approx;
+  > .panel-heading {
+    color: $color_black_haze_approx;
+    background-color: $color_rajah_approx;
+    border-color: $color_tequila_approx;
+  }
+}
+
+.panel-blue {
+  border-color: $color_cornflower_approx;
+  > .panel-heading {
+    color: $color_black_haze_approx;
+    background-color: $color_boston_blue_approx;
+    border-color: $color_cornflower_approx;
+  }
+}
+
+.panel-red {
+  border-color: $color_salmon_approx;
+  > .panel-heading {
+    color: $color_black_haze_approx;
+    background-color: $color_alizarin_crimson_approx;
+    border-color: $color_salmon_approx;
+  }
+}
+
+.panel-green {
+  border-color: $color_sinbad_approx;
+  > .panel-heading {
+    color: $color_black_haze_approx;
+    background-color: $color_chateau_green_approx;
+    border-color: $color_sinbad_approx;
+  }
+}
+
