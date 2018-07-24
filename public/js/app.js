@@ -44167,6 +44167,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['titles', 'items', 'url_create', 'url_detail', 'url_edit', 'url_delete', 'token', 'modal'],
@@ -44178,8 +44182,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {
         listItems: function listItems() {
             var _this = this;
-
-            this.$store.commit('setItems', { opa: 'ok' });
 
             if (this.search) {
                 return this.items.filter(function (res) {
@@ -44311,14 +44313,26 @@ var render = function() {
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-link",
-                      attrs: { href: _vm.url_detail }
-                    },
-                    [_vm._v("Visualizar")]
-                  ),
+                  _vm.url_detail && !_vm.modal
+                    ? _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-link",
+                          attrs: { href: _vm.url_detail }
+                        },
+                        [_vm._v("Visualizar")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.url_detail && _vm.modal
+                    ? _c("modal-btn-component", {
+                        attrs: {
+                          item: item,
+                          name: "showArticle",
+                          title: "Visualizar"
+                        }
+                      })
+                    : _vm._e(),
                   _vm._v(" "),
                   _vm.url_edit && !_vm.modal
                     ? _c(
@@ -44336,8 +44350,7 @@ var render = function() {
                         attrs: {
                           item: item,
                           name: "editArticle",
-                          title: "Editar",
-                          color: "primary"
+                          title: "Editar"
                         }
                       })
                     : _vm._e(),

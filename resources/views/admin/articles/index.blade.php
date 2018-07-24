@@ -18,4 +18,5 @@
 
     @include('admin.articles.modal.create')
     @include('admin.articles.modal.update')
+    @include('admin.articles.modal.show')
 @endsection
