@@ -16,27 +16,20 @@
 
     <modal-component name="createArticle">
         <panel-component title="Adicionar">
-            <form>
+            <form-component css="" action="#" method="put" enctype="application/x-www-form-urlencoded" token="">
+
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label for="title">Título</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Título">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <input type="file" id="exampleInputFile">
-                    <p class="help-block">Example block-level help text here.</p>
+                    <label for="title">Descrição</label>
+                    <input type="text" class="form-control" id="description" name="description" placeholder="Descrição">
                 </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Check me out
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+
+                <button class="btn btn-info">Adicionar</button>
+
+            </form-component>
         </panel-component>
     </modal-component>
 @endsection

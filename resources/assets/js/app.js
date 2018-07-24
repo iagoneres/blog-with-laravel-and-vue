@@ -23,6 +23,7 @@ Vue.component('tb-hover-component',     require('./components/Table/TableHoverCo
 Vue.component('breadcrumb-component',   require('./components/Breadcrumb/BreadcrumbComponent'));
 Vue.component('modal-component',        require('./components/Modal/ModalComponent'));
 Vue.component('modal-btn-component',    require('./components/Modal/ModalButtonComponent'));
+Vue.component('form-component',         require('./components/Form/FormComponent'));
 
 
 const app = new Vue({
