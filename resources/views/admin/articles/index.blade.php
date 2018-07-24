@@ -7,7 +7,7 @@
             <modal-btn-component name="createArticle" title="Criar" type="button" color="primary"></modal-btn-component>
             <tb-hover-component
                     v-bind:titles="['#','Título', 'Descrição', 'Autor', 'Data']"
-                    v-bind:items="[['1', 'Como criar um blog em Laravel', 'Postagem descrevendo como criar um blog', 'Iago Neres', '21/07/2018']]"
+                    v-bind:items="{{ $articleList }}"
                     url_create="#criar" url_detail="#detalhe" url_edit="#editar" url_delete="#deletar" token=""
             >
             </tb-hover-component>

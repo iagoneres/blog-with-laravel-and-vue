@@ -42,14 +42,18 @@
         },
         computed: {
             listItems: function() {
-                return this.items.filter( res => {
-                    for (let index = 0; index < res.length; index++) {
-                        if ((res[index]+"").toLowerCase().indexOf(this.search.toLowerCase()) >= 0) {
-                            return true;
+                if (this.search) {
+                    return this.items.filter( res => {
+                        for (let index = 0; index < res.length; index++) {
+                            if ((res[index]+"").toLowerCase().indexOf(this.search.toLowerCase()) >= 0) {
+                                return true;
+                            }
                         }
-                    }
-                    return false;
-                })
+                        return false;
+                    })
+                }
+
+                return this.items;
             }
         }
     }

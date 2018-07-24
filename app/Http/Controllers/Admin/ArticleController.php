@@ -18,7 +18,25 @@ class ArticleController extends Controller
             ['title' => 'Home', 'url' => route('home')],
             ['title' => 'Artigos', 'url' => ""],
         ]);
-        return view('admin.articles.index', compact('breadcrumb'));
+
+        $articleList = json_encode([
+            [
+                'id'            => 1,
+                'title'         => 'Como criar um blog em Laravel',
+                'description'   => 'Postagem descrevendo como criar um blog',
+                'author'        => 'Iago Neres',
+                'date'          => '21/07/2018'
+            ],
+            [
+                'id'            => 2,
+                'title'         => 'Criar site em VueJs',
+                'description'   => 'Postagem ensinando a criar site com VueJs',
+                'author'        => 'Iago Neres',
+                'date'          => '21/07/2018'
+            ]
+        ]);
+
+        return view('admin.articles.index', compact('breadcrumb', 'articleList'));
     }
 
     /**

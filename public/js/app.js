@@ -44154,14 +44154,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         listItems: function listItems() {
             var _this = this;
 
-            return this.items.filter(function (res) {
-                for (var index = 0; index < res.length; index++) {
-                    if ((res[index] + "").toLowerCase().indexOf(_this.search.toLowerCase()) >= 0) {
-                        return true;
+            if (this.search) {
+                return this.items.filter(function (res) {
+                    for (var index = 0; index < res.length; index++) {
+                        if ((res[index] + "").toLowerCase().indexOf(_this.search.toLowerCase()) >= 0) {
+                            return true;
+                        }
                     }
-                }
-                return false;
-            });
+                    return false;
+                });
+            }
+
+            return this.items;
         }
     }
 });
