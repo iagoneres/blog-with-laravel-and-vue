@@ -1,11 +1,17 @@
 <template>
     <div>
+
         <div class="form-inline">
-            <a v-if="url_create" v-bind:href="url_create">Criar</a>
+            <p>{{ this.$store.state.items }}</p>
+            <a v-if="url_create && !modal" v-bind:href="url_create">Criar</a>
+
+            <modal-btn-component v-if="url_create && modal" name="createArticle" title="Criar" type="button" color="primary"></modal-btn-component>
+
             <div class="form-group pull-right">
                 <input class="form-control" type="search" placeholder="Pesquisar" v-model="search">
             </div>
         </div>
+
         <table class="table table-striped table-hover">
             <thead>
             <tr>
@@ -22,7 +28,8 @@
                         <input type="hidden" name="_token" v-bind:value="token">
                     </form>
                     <a v-bind:href="url_detail" class="btn btn-link">Visualizar</a>
-                    <a v-bind:href="url_edit" class="btn btn-link">Editar</a>
+                    <a v-if="url_edit && !modal" v-bind:href="url_edit" class="btn btn-link">Editar</a>
+                    <modal-btn-component v-if="url_edit && modal" v-bind:item="item" name="editArticle" title="Editar" color="primary"></modal-btn-component>
                     <a v-if="(url_delete && !token)" v-bind:href="url_delete" class="btn btn-link">Deletar</a>
                     <button v-if="url_delete && token" type="submit" class="btn btn-link" v-bind:form="index">Deletar</button>
                 </td>
@@ -34,7 +41,7 @@
 
 <script>
     export default {
-        props: ['titles', 'items', 'url_create', 'url_detail', 'url_edit', 'url_delete', 'token'],
+        props: ['titles', 'items', 'url_create', 'url_detail', 'url_edit', 'url_delete', 'token', 'modal'],
         data: function() {
             return {
                 search:''
@@ -42,6 +49,9 @@
         },
         computed: {
             listItems: function() {
+
+                this.$store.commit('setItems', {opa: 'ok'});
+
                 if (this.search) {
                     return this.items.filter( res => {
                         for (let index = 0; index < res.length; index++) {

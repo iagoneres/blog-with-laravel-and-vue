@@ -8,12 +8,26 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import Vuex from 'vuex';
+Vue.use(Vuex);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+// Vuex
+const store = new Vuex.Store({
+    state: {
+        item: {}
+    },
+    mutations:{
+        setItem(state, obj) {
+            state.item = obj;
+        }
+    }
+});
 
 Vue.component('navbar-component',       require('./components/NavBar/NavBarComponent'));
 Vue.component('panel-component',        require('./components/Panel/PanelComponent'));
@@ -27,5 +41,6 @@ Vue.component('form-component',         require('./components/Form/FormComponent
 
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store
 });
