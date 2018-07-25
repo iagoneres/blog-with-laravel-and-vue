@@ -33,8 +33,8 @@ class ArticleTransformer extends TransformerAbstract
 
             'title'         => $model->title,
             'description'   => $model->description,
-            'content'       => $model->conttent,
-            'author'        => $author,
+            'content'       => $model->content,
+            'author'        => $model->user->name,
 
             'created_at' => $model->created_at->toDateTimeString(),
             'updated_at' => $model->updated_at->toDateTimeString()

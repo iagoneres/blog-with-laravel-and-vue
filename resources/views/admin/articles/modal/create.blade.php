@@ -1,5 +1,5 @@
 <modal-component name="createArticle" title="Adicionar">
-    <form-component id="createForm" css="" action="#" method="put" enctype="application/x-www-form-urlencoded" token="">
+    <form-component id="createForm" css="" action="{{route('artigos.index')}}" method="post" enctype="" token="{{ csrf_token() }}">
 
         <div class="form-group">
             <label for="title">Título</label>
@@ -9,6 +9,11 @@
             <label for="title">Descrição</label>
             <input type="text" class="form-control" id="description" name="description" placeholder="Descrição">
         </div>
+        <div class="form-group">
+            <label for="content">Conteúdo</label>
+            <textarea class="form-control" id="content" name="content"></textarea>
+        </div>
+
     </form-component>
 
     <span slot="buttons">

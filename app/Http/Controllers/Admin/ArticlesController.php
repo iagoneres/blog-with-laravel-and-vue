@@ -2,12 +2,35 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\ArticleRepository;
+use App\Validators\ArticleValidator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 class ArticlesController extends Controller
 {
+
+    protected $repository;
+
+    protected $validator;
+
     /**
+     * ArticlesController constructor.
+     * @param ArticleRepository $repository
+     * @param ArticleValidator $validator
+     */
+    public function __construct(ArticleRepository $repository, ArticleValidator $validator)
+    {
+        $this->repository = $repository;
+        $this->validator  = $validator;
+
+    }
+
+
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -19,22 +42,15 @@ class ArticlesController extends Controller
             ['title' => 'Artigos', 'url' => ""],
         ]);
 
-        $articleList = json_encode([
-            [
-                'id'            => 1,
-                'title'         => 'Como criar um blog em Laravel',
-                'description'   => 'Postagem descrevendo como criar um blog',
-                'author'        => 'Iago Neres',
-                'date'          => '21/07/2018'
-            ],
-            [
-                'id'            => 2,
-                'title'         => 'Criar site em VueJs',
-                'description'   => 'Postagem ensinando a criar site com VueJs',
-                'author'        => 'Iago Neres',
-                'date'          => '21/07/2018'
-            ]
-        ]);
+        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        $articles = $this->repository->all();
+        $articleList = json_encode($articles['data']);
+
+        if (request()->wantsJson()) {
+            return response()->json([
+                'data' => $articles,
+            ]);
+        }
 
         return view('admin.articles.index', compact('breadcrumb', 'articleList'));
     }
@@ -52,12 +68,43 @@ class ArticlesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+
+        try {
+
+            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+
+            $user =  Auth::user();
+            $data = $request->all();
+            $data['user_id'] = $user->id;
+
+            $article = $this->repository->create($data);
+
+            $response = [
+                'message' => 'Article created.',
+                'data'    => $article,
+            ];
+
+            if ($request->wantsJson()) {
+
+                return response()->json($response);
+            }
+
+            return redirect()->back()->with('message', $response['message']);
+        } catch (ValidatorException $e) {
+            if ($request->wantsJson()) {
+                return response()->json([
+                    'error'   => true,
+                    'message' => $e->getMessageBag()
+                ]);
+            }
+
+            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+        }
     }
 
     /**

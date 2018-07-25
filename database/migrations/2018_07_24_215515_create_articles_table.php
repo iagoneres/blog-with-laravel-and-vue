@@ -20,7 +20,7 @@ class CreateArticlesTable extends Migration
 
             $table->string('title');
             $table->string('description');
-            $table->string('content');
+            $table->longText('content');
             $table->unsignedInteger('user_id')->index();
             $table->foreign('user_id')->references('id')->on('users');
 
