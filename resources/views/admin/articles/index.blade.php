@@ -9,7 +9,7 @@
             <tb-hover-component
                     v-bind:titles="['#','Título', 'Descrição', 'Autor', 'Data']"
                     v-bind:items="{{ $articleList }}"
-                    url_create="#criar" url_detail="#detalhe" url_edit="#editar" url_delete="#deletar" token=""
+                    url_create="#criar" url_detail="#detalhe" url_edit="#editar" url_delete="#deletar" token="131313"
                     modal="true"
             >
             </tb-hover-component>

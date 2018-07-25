@@ -14,7 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    <div id="app" style="display:none">
 
         <navbar-component title="{{ config('app.name', 'Laravel') }}" url="{{ url('/') }}">
             <!-- Authentication Links -->

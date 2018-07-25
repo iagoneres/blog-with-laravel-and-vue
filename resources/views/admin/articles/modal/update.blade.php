@@ -1,5 +1,4 @@
-<modal-component name="editArticle">
-    <panel-component title="Editar">
+<modal-component name="editArticle" title="Editar">
         <form-component css="" action="#" method="put" enctype="application/x-www-form-urlencoded" token="">
 
             <div class="form-group">
@@ -11,8 +10,9 @@
                 <input type="text" class="form-control" v-model="$store.state.item.description" id="description" name="description" placeholder="Descrição">
             </div>
 
-            <button class="btn btn-info">Adicionar</button>
-
         </form-component>
-    </panel-component>
+
+        <span slot="buttons">
+            <button form="createForm" class="btn btn-info">Salvar</button>
+        </span>
 </modal-component>
