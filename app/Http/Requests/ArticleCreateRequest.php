@@ -24,7 +24,10 @@ class ArticleCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title'         => 'required',
+            'description'   => 'required',
+            'content'       => 'required',
+            'user_id'       => 'required|exists:users,id'
         ];
     }
 }

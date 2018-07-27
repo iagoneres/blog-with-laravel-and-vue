@@ -3,15 +3,15 @@
 
         <div class="form-group">
             <label for="title">Título</label>
-            <input type="text" class="form-control" id="title" name="title" placeholder="Título">
+            <input type="text" class="form-control" id="title" name="title" placeholder="Título" value="{{ old('title') }}">
         </div>
         <div class="form-group">
             <label for="title">Descrição</label>
-            <input type="text" class="form-control" id="description" name="description" placeholder="Descrição">
+            <input type="text" class="form-control" id="description" name="description" placeholder="Descrição" value="{{ old('description') }}">
         </div>
         <div class="form-group">
             <label for="content">Conteúdo</label>
-            <textarea class="form-control" id="content" name="content"></textarea>
+            <textarea class="form-control" id="content" name="content">value="{{ old('content') }}"</textarea>
         </div>
 
     </form-component>

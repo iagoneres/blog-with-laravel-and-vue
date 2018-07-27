@@ -2,6 +2,16 @@
 
 @section('content')
     <page-component size="12">
+
+        @if($errors->all())
+            @foreach($errors->all() as $key => $value)
+                <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Atenção!</strong> {{ $value }}.
+                </div>
+            @endforeach
+        @endif
+
         <panel-component title="Artigos" >
 
             <breadcrumb-component v-bind:breadcrumb="{{ $breadcrumb }}"></breadcrumb-component>
