@@ -17,7 +17,7 @@
             <breadcrumb-component v-bind:breadcrumb="{{ $breadcrumb }}"></breadcrumb-component>
 
             <tb-hover-component
-                    v-bind:titles="['#','Título', 'Descrição', 'Autor', 'Data']"
+                    v-bind:titles="['#','Título', 'Descrição', 'Conteúdo', 'Autor', 'Criado', 'Atualizado']"
                     v-bind:items="{{ $articleList }}"
                     url_create="#criar" url_detail="#detalhe" url_edit="#editar" url_delete="#deletar" token="131313"
                     modal="true"
