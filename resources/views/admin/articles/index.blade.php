@@ -19,7 +19,7 @@
             <tb-hover-component
                     v-bind:titles="['#','Título', 'Descrição', 'Conteúdo', 'Autor', 'Criado', 'Atualizado']"
                     v-bind:items="{{ $articleList }}"
-                    url_create="#criar" url_detail="/admin/artigos/" url_edit="/admin/artigos/" url_delete="#deletar" token="131313"
+                    url_create="#criar" url_detail="/admin/artigos/" url_edit="/admin/artigos/" url_delete="/admin/artigos/" token="{{ csrf_token() }}"
                     modal="true"
             >
             </tb-hover-component>

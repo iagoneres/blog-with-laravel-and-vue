@@ -23,7 +23,7 @@
             <tr v-for="(item, index) in listItems">
                 <td v-for="value in item">{{value}}</td>
                 <td>
-                    <form v-if="url_delete && token" v-bind:id="index" v-bind:action="url_delete" method="post">
+                    <form v-if="url_delete && token" v-bind:id="index" v-bind:action="url_delete + item.id" method="post">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" v-bind:value="token">
 
@@ -33,7 +33,7 @@
                         <a v-if="url_edit && !modal" v-bind:href="url_edit" class="btn btn-link">Editar</a>
                         <modal-btn-component v-if="url_edit && modal" v-bind:item="item" v-bind:url="url_edit" type="link" name="editArticle" title="Editar"></modal-btn-component>
 
-                        <a v-if="(url_delete && token)" v-bind:href="url_delete" class="btn btn-link">Deletar</a>
+                        <a v-if="(url_delete && token)" href="#"  v-on:click="submitForm(index)">Deletar</a>
 
                     </form>
                 </td>
@@ -49,6 +49,11 @@
         data: function() {
             return {
                 search:''
+            }
+        },
+        methods:{
+            submitForm: function(index){
+                document.getElementById(index).submit();
             }
         },
         computed: {

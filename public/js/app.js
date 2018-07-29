@@ -45127,6 +45127,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             search: ''
         };
     },
+    methods: {
+        submitForm: function submitForm(index) {
+            document.getElementById(index).submit();
+        }
+    },
     computed: {
         listItems: function listItems() {
             var _this = this;
@@ -45239,7 +45244,7 @@ var render = function() {
                       {
                         attrs: {
                           id: index,
-                          action: _vm.url_delete,
+                          action: _vm.url_delete + item.id,
                           method: "post"
                         }
                       },
@@ -45307,8 +45312,12 @@ var render = function() {
                           ? _c(
                               "a",
                               {
-                                staticClass: "btn btn-link",
-                                attrs: { href: _vm.url_delete }
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    _vm.submitForm(index)
+                                  }
+                                }
                               },
                               [_vm._v("Deletar")]
                             )
