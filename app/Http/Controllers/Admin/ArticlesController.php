@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Entities\Article;
 use App\Repositories\ArticleRepository;
 use App\Validators\ArticleValidator;
 use Illuminate\Http\Request;
@@ -43,8 +44,9 @@ class ArticlesController extends Controller
         ]);
 
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $articles = $this->repository->all();
-        $articleList = json_encode($articles['data']);
+        $articles = Article::paginate(5);
+
+        \Log::debug($articles);
 
         if (request()->wantsJson()) {
             return response()->json([
@@ -52,7 +54,7 @@ class ArticlesController extends Controller
             ]);
         }
 
-        return view('admin.articles.index', compact('breadcrumb', 'articleList'));
+        return view('admin.articles.index', compact('breadcrumb', 'articles'));
     }
 
     /**

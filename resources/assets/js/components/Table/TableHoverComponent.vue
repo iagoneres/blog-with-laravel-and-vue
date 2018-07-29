@@ -58,8 +58,9 @@
         },
         computed: {
             listItems: function() {
+                let listItems = this.items.data;
                 if (this.search) {
-                    return this.items.filter( res => {
+                    return listItems.filter( res => {
                         res = Object.values(res);
                         for (let index = 0; index < res.length; index++) {
                             if ((res[index]+"").toLowerCase().indexOf(this.search.toLowerCase()) >= 0) {
@@ -70,7 +71,7 @@
                     })
                 }
 
-                return this.items;
+                return listItems;
             }
         }
     }

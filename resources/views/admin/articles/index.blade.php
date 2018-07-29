@@ -18,11 +18,15 @@
 
             <tb-hover-component
                     v-bind:titles="['#','Título', 'Descrição', 'Conteúdo', 'Autor', 'Criado', 'Atualizado']"
-                    v-bind:items="{{ $articleList }}"
+                    v-bind:items="{{ json_encode($articles) }}"
                     url_create="#criar" url_detail="/admin/artigos/" url_edit="/admin/artigos/" url_delete="/admin/artigos/" token="{{ csrf_token() }}"
                     modal="true"
             >
             </tb-hover-component>
+            <div align="center">
+                {{ $articles }}
+            </div>
+
         </panel-component>
     </page-component>
 

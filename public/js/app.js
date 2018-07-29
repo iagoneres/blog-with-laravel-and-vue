@@ -45136,8 +45136,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         listItems: function listItems() {
             var _this = this;
 
+            var listItems = this.items.data;
             if (this.search) {
-                return this.items.filter(function (res) {
+                return listItems.filter(function (res) {
                     res = Object.values(res);
                     for (var index = 0; index < res.length; index++) {
                         if ((res[index] + "").toLowerCase().indexOf(_this.search.toLowerCase()) >= 0) {
@@ -45148,7 +45149,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             }
 
-            return this.items;
+            return listItems;
         }
     }
 });
@@ -45891,7 +45892,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (this.method.toLowerCase() == "put") {
                 this.changeMethod = "put";
-                console.log(this.changeMethod);
             }
 
             if (this.method.toLowerCase() == "delete") {

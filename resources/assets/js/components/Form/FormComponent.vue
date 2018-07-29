@@ -22,7 +22,6 @@
 
                 if(this.method.toLowerCase() == "put") {
                     this.changeMethod = "put";
-                    console.log(this.changeMethod);
                 }
 
                 if(this.method.toLowerCase() == "delete") {
