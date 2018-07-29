@@ -3,14 +3,14 @@
 @section('content')
     <page-component size="12">
         <panel-component title="Painel de Controle" >
-            <breadcrumb-component v-bind:breadcrumb="{{$breadcrumb}}"></breadcrumb-component>
+            <breadcrumb-component v-bind:breadcrumb="{{ $breadcrumb }}"></breadcrumb-component>
             <div class="row">
                 <div class="col-md-4">
-                    <box-component title="Usuários" value="150" url="{{route('usuarios.index')}}" color="#3182bd" icon="ion-person-stalker">
+                    <box-component title="Usuários" value="{{ $totalArticles }}" url="{{route('usuarios.index')}}" color="#3182bd" icon="ion-person-stalker">
                     </box-component>
                 </div>
                 <div class="col-md-4">
-                    <box-component title="Artigos" value="150" url="{{route('artigos.index')}}" color="#fdae6b" icon="ion-ios-copy-outline">
+                    <box-component title="Artigos" value="{{ $totalUsers }}" url="{{route('artigos.index')}}" color="#fdae6b" icon="ion-ios-copy-outline">
                     </box-component>
                 </div>
                 <div class="col-md-4">

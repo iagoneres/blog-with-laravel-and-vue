@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Article;
+use App\Entities\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,6 +28,10 @@ class HomeController extends Controller
         $breadcrumb = json_encode([
             ['title' => 'Home', 'url' => ""]
         ]);
-        return view('home', compact('breadcrumb'));
+
+        $totalUsers     = User::count();
+        $totalArticles  = Article::count();
+
+        return view('home', compact('breadcrumb', 'totalUsers', 'totalArticles'));
     }
 }
