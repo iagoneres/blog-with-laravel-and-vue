@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Entities\User;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -48,8 +50,13 @@ class UsersController extends Controller
      */
     public function index()
     {
+        $breadcrumb = json_encode([
+            ['title' => 'Home', 'url' => route('home')],
+            ['title' => 'Usuários', 'url' => ""],
+        ]);
+
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $users = $this->repository->all();
+        $users = User::paginate(5);
 
         if (request()->wantsJson()) {
 
@@ -58,7 +65,7 @@ class UsersController extends Controller
             ]);
         }
 
-        return view('users.index', compact('users'));
+        return view('admin.users.index', compact('breadcrumb','users'));
     }
 
     /**
@@ -70,17 +77,18 @@ class UsersController extends Controller
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(UserCreateRequest $request)
+    public function store(Request $request)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
+            \Log::debug($request->all());
             $user = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'User created.',
-                'data'    => $user->toArray(),
+                'message' => 'Usuário criado.',
+                'data'    => $user,
             ];
 
             if ($request->wantsJson()) {
@@ -110,16 +118,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $user,
-            ]);
-        }
-
-        return view('users.show', compact('user'));
+        return $this->repository->find($id);
     }
 
     /**
@@ -133,7 +132,7 @@ class UsersController extends Controller
     {
         $user = $this->repository->find($id);
 
-        return view('users.edit', compact('user'));
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -146,7 +145,7 @@ class UsersController extends Controller
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         try {
 
@@ -155,8 +154,8 @@ class UsersController extends Controller
             $user = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'User updated.',
-                'data'    => $user->toArray(),
+                'message' => 'Usuário Atualizado.',
+                'data'    => $user,
             ];
 
             if ($request->wantsJson()) {
@@ -194,11 +193,11 @@ class UsersController extends Controller
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'User deleted.',
+                'message' => 'Usuário removido.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'User deleted.');
+        return redirect()->back()->with('message', 'Usuário removido.');
     }
 }

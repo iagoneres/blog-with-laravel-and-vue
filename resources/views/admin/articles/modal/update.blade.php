@@ -1,4 +1,4 @@
-<modal-component name="editArticle" title="Editar">
+<modal-component name="edit" title="Editar">
         <form-component id="editForm" css="" v-bind:action="'/admin/artigos/' + $store.state.item.id" method="put" enctype="" token="{{ csrf_token() }}">
 
             <div class="form-group">

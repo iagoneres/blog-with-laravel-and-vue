@@ -5,7 +5,7 @@
             <p>{{ this.$store.state.items }}</p>
             <a v-if="url_create && !modal" v-bind:href="url_create">Criar</a>
 
-            <modal-btn-component v-if="url_create && modal" name="createArticle" title="Criar" type="button" color="primary"></modal-btn-component>
+            <modal-btn-component v-if="url_create && modal" name="create" title="Criar" type="button" color="primary"></modal-btn-component>
 
             <div class="form-group pull-right">
                 <input class="form-control" type="search" placeholder="Pesquisar" v-model="search">
@@ -15,7 +15,7 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th v-for="title in titles">{{title}}</th>
+                    <th v-for="title in titles">{{ title }}</th>
                     <th v-if="url_detail || url_edit || url_delete">Ação</th>
                 </tr>
             </thead>
@@ -28,10 +28,10 @@
                         <input type="hidden" name="_token" v-bind:value="token">
 
                         <a v-if="url_detail && !modal" v-bind:href="url_detail" class="btn btn-link">Visualizar</a>
-                        <modal-btn-component v-if="url_detail && modal" v-bind:item="item" v-bind:url="url_detail" type="link" name="showArticle" title="Visualizar"></modal-btn-component>
+                        <modal-btn-component v-if="url_detail && modal" v-bind:item="item" v-bind:url="url_detail" type="link" name="show" title="Visualizar"></modal-btn-component>
 
                         <a v-if="url_edit && !modal" v-bind:href="url_edit" class="btn btn-link">Editar</a>
-                        <modal-btn-component v-if="url_edit && modal" v-bind:item="item" v-bind:url="url_edit" type="link" name="editArticle" title="Editar"></modal-btn-component>
+                        <modal-btn-component v-if="url_edit && modal" v-bind:item="item" v-bind:url="url_edit" type="link" name="edit" title="Editar"></modal-btn-component>
 
                         <a v-if="(url_delete && token)" href="#"  v-on:click="submitForm(index)">Deletar</a>
 
@@ -58,9 +58,9 @@
         },
         computed: {
             listItems: function() {
-                let listItems = this.items.data;
+                let items = this.items.data;
                 if (this.search) {
-                    return listItems.filter( res => {
+                    return items.filter( res => {
                         res = Object.values(res);
                         for (let index = 0; index < res.length; index++) {
                             if ((res[index]+"").toLowerCase().indexOf(this.search.toLowerCase()) >= 0) {
@@ -71,7 +71,7 @@
                     })
                 }
 
-                return listItems;
+                return items;
             }
         }
     }

@@ -45136,9 +45136,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         listItems: function listItems() {
             var _this = this;
 
-            var listItems = this.items.data;
+            var items = this.items.data;
             if (this.search) {
-                return listItems.filter(function (res) {
+                return items.filter(function (res) {
                     res = Object.values(res);
                     for (var index = 0; index < res.length; index++) {
                         if ((res[index] + "").toLowerCase().indexOf(_this.search.toLowerCase()) >= 0) {
@@ -45149,7 +45149,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             }
 
-            return listItems;
+            return items;
         }
     }
 });
@@ -45176,7 +45176,7 @@ var render = function() {
         _vm.url_create && _vm.modal
           ? _c("modal-btn-component", {
               attrs: {
-                name: "createArticle",
+                name: "create",
                 title: "Criar",
                 type: "button",
                 color: "primary"
@@ -45280,7 +45280,7 @@ var render = function() {
                                 item: item,
                                 url: _vm.url_detail,
                                 type: "link",
-                                name: "showArticle",
+                                name: "show",
                                 title: "Visualizar"
                               }
                             })
@@ -45303,7 +45303,7 @@ var render = function() {
                                 item: item,
                                 url: _vm.url_edit,
                                 type: "link",
-                                name: "editArticle",
+                                name: "edit",
                                 title: "Editar"
                               }
                             })

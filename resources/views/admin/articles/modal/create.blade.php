@@ -1,4 +1,4 @@
-<modal-component name="createArticle" title="Adicionar">
+<modal-component name="create" title="Adicionar">
     <form-component id="createForm" css="" action="{{route('artigos.index')}}" method="post" enctype="" token="{{ csrf_token() }}">
 
         <div class="form-group">

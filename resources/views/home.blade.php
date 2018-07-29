@@ -6,7 +6,7 @@
             <breadcrumb-component v-bind:breadcrumb="{{$breadcrumb}}"></breadcrumb-component>
             <div class="row">
                 <div class="col-md-4">
-                    <box-component title="Usuários" value="150" url="" color="#3182bd" icon="ion-person-stalker">
+                    <box-component title="Usuários" value="150" url="{{route('usuarios.index')}}" color="#3182bd" icon="ion-person-stalker">
                     </box-component>
                 </div>
                 <div class="col-md-4">

@@ -46,8 +46,6 @@ class ArticlesController extends Controller
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $articles = Article::paginate(5);
 
-        \Log::debug($articles);
-
         if (request()->wantsJson()) {
             return response()->json([
                 'data' => $articles,
