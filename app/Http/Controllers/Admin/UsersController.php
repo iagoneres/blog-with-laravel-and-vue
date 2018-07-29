@@ -51,7 +51,7 @@ class UsersController extends Controller
     public function index()
     {
         $breadcrumb = json_encode([
-            ['title' => 'Home', 'url' => route('home')],
+            ['title' => 'Admin', 'url' => route('admin')],
             ['title' => 'Usuários', 'url' => ""],
         ]);
 

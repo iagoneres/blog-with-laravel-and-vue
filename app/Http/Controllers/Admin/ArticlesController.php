@@ -39,7 +39,7 @@ class ArticlesController extends Controller
     public function index()
     {
         $breadcrumb = json_encode([
-            ['title' => 'Home', 'url' => route('home')],
+            ['title' => 'Admin', 'url' => route('admin')],
             ['title' => 'Artigos', 'url' => ""],
         ]);
 
