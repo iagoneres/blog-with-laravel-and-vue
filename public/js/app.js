@@ -45272,6 +45272,7 @@ var render = function() {
                           ? _c("modal-btn-component", {
                               attrs: {
                                 item: item,
+                                url: _vm.url_detail,
                                 type: "link",
                                 name: "showArticle",
                                 title: "Visualizar"
@@ -45294,6 +45295,7 @@ var render = function() {
                           ? _c("modal-btn-component", {
                               attrs: {
                                 item: item,
+                                url: _vm.url_edit,
                                 type: "link",
                                 name: "editArticle",
                                 title: "Editar"
@@ -45659,10 +45661,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['name', 'type', 'title', 'color', 'item'],
+    props: ['name', 'type', 'title', 'color', 'item', 'url'],
     methods: {
         fillForm: function fillForm() {
-            this.$store.commit('setItem', this.item);
+            var _this = this;
+
+            axios.get(this.url + this.item.id).then(function (res) {
+                _this.$store.commit('setItem', res.data.data);
+            });
         }
     },
     computed: {

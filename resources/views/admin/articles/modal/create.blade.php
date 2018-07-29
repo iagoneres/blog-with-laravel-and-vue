@@ -11,7 +11,7 @@
         </div>
         <div class="form-group">
             <label for="content">Conteúdo</label>
-            <textarea class="form-control" id="content" name="content">value="{{ old('content') }}"</textarea>
+            <textarea class="form-control" id="content" name="content">{{ old('content') }}</textarea>
         </div>
 
     </form-component>

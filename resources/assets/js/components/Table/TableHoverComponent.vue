@@ -28,10 +28,10 @@
                         <input type="hidden" name="_token" v-bind:value="token">
 
                         <a v-if="url_detail && !modal" v-bind:href="url_detail" class="btn btn-link">Visualizar</a>
-                        <modal-btn-component v-if="url_detail && modal" v-bind:item="item" type="link" name="showArticle" title="Visualizar"></modal-btn-component>
+                        <modal-btn-component v-if="url_detail && modal" v-bind:item="item" v-bind:url="url_detail" type="link" name="showArticle" title="Visualizar"></modal-btn-component>
 
                         <a v-if="url_edit && !modal" v-bind:href="url_edit" class="btn btn-link">Editar</a>
-                        <modal-btn-component v-if="url_edit && modal" v-bind:item="item" type="link" name="editArticle" title="Editar"></modal-btn-component>
+                        <modal-btn-component v-if="url_edit && modal" v-bind:item="item" v-bind:url="url_edit" type="link" name="editArticle" title="Editar"></modal-btn-component>
 
                         <a v-if="(url_delete && token)" v-bind:href="url_delete" class="btn btn-link">Deletar</a>
 

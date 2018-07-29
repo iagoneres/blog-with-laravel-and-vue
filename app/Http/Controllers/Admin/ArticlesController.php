@@ -85,7 +85,7 @@ class ArticlesController extends Controller
             $article = $this->repository->create($data);
 
             $response = [
-                'message' => 'Article created.',
+                'message' => 'Artigo criado.',
                 'data'    => $article,
             ];
 
@@ -115,7 +115,7 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        //
+        return $this->repository->find($id);
     }
 
     /**
@@ -132,13 +132,38 @@ class ArticlesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @throws ValidatorException
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
+
+            $article = $this->repository->update($request->all(), $id);
+
+            $response = [
+                'message' => 'Artigo atualizado.',
+                'data'    => $article,
+            ];
+
+            if ($request->wantsJson()) {
+
+                return response()->json($response);
+            }
+
+            return redirect()->back()->with('message', $response['message']);
+        } catch (ValidatorException $e) {
+            if ($request->wantsJson()) {
+                return response()->json([
+                    'error'   => true,
+                    'message' => $e->getMessageBag()
+                ]);
+            }
+
+            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+        }
     }
 
     /**

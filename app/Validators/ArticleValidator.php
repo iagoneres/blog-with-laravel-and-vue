@@ -24,9 +24,9 @@ class ArticleValidator extends LaravelValidator
             'content'       => 'required',
         ],
         ValidatorInterface::RULE_UPDATE => [
-            'title'         => 'required',
-            'description'   => 'required',
-            'content'       => 'required',
+//            'title'         => 'required',
+//            'description'   => 'required',
+//            'content'       => 'required',
         ],
     ];
 }
